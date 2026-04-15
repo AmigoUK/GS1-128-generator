@@ -5,6 +5,7 @@
 !/storage/uploads/.htaccess
 !/storage/generated/.htaccess
 .phpunit.result.cache
+.phpunit.cache/
 .idea/
 .vscode/
 *.log
