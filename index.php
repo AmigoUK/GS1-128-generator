@@ -9,6 +9,9 @@ require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/ai-definitions.php';
 require_once __DIR__ . '/includes/validation.php';
 require_once __DIR__ . '/includes/barcode-generator.php';
+require_once __DIR__ . '/includes/import-csv.php';
+require_once __DIR__ . '/includes/import-xml.php';
+require_once __DIR__ . '/includes/export.php';
 
 $base = base_url();
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/';
@@ -47,6 +50,11 @@ switch ($route) {
 
     case 'bulk':
     case 'bulk/upload':
+        if ($method === 'POST') {
+            require __DIR__ . '/includes/bulk-handler.php';
+            handle_bulk_upload();
+            exit;
+        }
         $title = 'Bulk import';
         $view = __DIR__ . '/templates/bulk/upload.php';
         break;
@@ -58,6 +66,10 @@ switch ($route) {
         $title = 'Bulk import — results';
         $view = __DIR__ . '/templates/bulk/results.php';
         break;
+    case 'bulk/download':
+        require __DIR__ . '/includes/bulk-handler.php';
+        handle_bulk_download();
+        exit;
 
     case 'api/validate':
         require __DIR__ . '/includes/api.php';

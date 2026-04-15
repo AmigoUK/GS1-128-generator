@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://amigouk.github.io/GS1-128-generator/schema/v1"
+           xmlns="https://amigouk.github.io/GS1-128-generator/schema/v1"
+           elementFormDefault="qualified">
+
+  <xs:element name="barcodes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="barcode" type="BarcodeType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="BarcodeType">
+    <xs:all>
+      <xs:element name="ean13"               type="Ean13Type"  minOccurs="0"/>
+      <xs:element name="gtin14"              type="Gtin14Type" minOccurs="0"/>
+      <xs:element name="packaging_indicator" type="DigitType"  minOccurs="0"/>
+      <xs:element name="batch"               type="ShortText"  minOccurs="0"/>
+      <xs:element name="production_date"     type="DateText"   minOccurs="0"/>
+      <xs:element name="packaging_date"      type="DateText"   minOccurs="0"/>
+      <xs:element name="best_before"         type="DateText"   minOccurs="0"/>
+      <xs:element name="expiry_date"         type="DateText"   minOccurs="0"/>
+      <xs:element name="serial"              type="ShortText"  minOccurs="0"/>
+      <xs:element name="net_weight_kg"       type="DecimalText" minOccurs="0"/>
+      <xs:element name="net_weight_lb"       type="DecimalText" minOccurs="0"/>
+      <xs:element name="count"               type="xs:positiveInteger" minOccurs="0"/>
+      <xs:element name="gtin_contained"      type="Gtin14Type" minOccurs="0"/>
+      <xs:element name="purchase_order"      type="LongText"   minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:simpleType name="Ean13Type">
+    <xs:restriction base="xs:string"><xs:pattern value="\d{13}"/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Gtin14Type">
+    <xs:restriction base="xs:string"><xs:pattern value="\d{14}"/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DigitType">
+    <xs:restriction base="xs:string"><xs:pattern value="\d"/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DateText">
+    <xs:restriction base="xs:string"><xs:pattern value="(\d{6})|(\d{4}-\d{2}-\d{2})"/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DecimalText">
+    <xs:restriction base="xs:string"><xs:pattern value="\d+(\.\d{0,6})?"/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ShortText">
+    <xs:restriction base="xs:string"><xs:maxLength value="20"/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LongText">
+    <xs:restriction base="xs:string"><xs:maxLength value="30"/></xs:restriction>
+  </xs:simpleType>
+</xs:schema>

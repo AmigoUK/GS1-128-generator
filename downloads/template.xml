@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<barcodes xmlns="https://amigouk.github.io/GS1-128-generator/schema/v1">
+  <barcode>
+    <ean13>5901234123457</ean13>
+    <packaging_indicator>1</packaging_indicator>
+    <batch>LOT2024A</batch>
+    <best_before>2026-01-15</best_before>
+    <net_weight_kg>1.250</net_weight_kg>
+    <purchase_order>PO-2026-0001</purchase_order>
+  </barcode>
+</barcodes>
