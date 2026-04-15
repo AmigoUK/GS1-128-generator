@@ -5,7 +5,7 @@
   </div>
   <div class="col-md-5 text-center">
     <canvas id="hero-barcode" aria-label="GS1-128 barcode preview"></canvas>
-    <script>window.addEventListener('DOMContentLoaded',()=>{try{bwipjs.toCanvas('hero-barcode',{bcid:'gs1-128',text:'(01)15901234123451(15)260115(10)LOT2024A',scale:2,height:14,includetext:true,textxalign:'center'});}catch(e){}});</script>
+    <script>window.addEventListener('DOMContentLoaded',()=>{try{bwipjs.toCanvas('hero-barcode',{bcid:'gs1-128',text:'(01)15901234123454(15)260115(10)LOT2024A',scale:2,height:14,includetext:true,textxalign:'center'});}catch(e){}});</script>
   </div>
 </div>
 
