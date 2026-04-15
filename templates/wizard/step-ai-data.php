@@ -45,6 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
       '<p class="text-muted small">AI ' + E(pos) + '</p>' +
       '<h1 class="h3 mb-2">(' + E(def.code) + ') ' + E(def.name) + '</h1>' +
       '<p class="text-muted">' + E(def.description) + '</p>' +
+      (def.when_to_use
+        ? '<details class="mb-3" open><summary class="text-muted small">When should I use this?</summary>' +
+          '<p class="small mt-2 mb-0">' + E(def.when_to_use) + '</p>' +
+          '</details>'
+        : '') +
       '<div class="mb-3">' +
         '<label for="ai-input" class="form-label fw-semibold">' + E(def.name) + '</label>' +
         buildInput(def) +

@@ -15,7 +15,19 @@
     <div id="derive-block" class="card mb-3 d-none">
       <div class="card-body">
         <h2 class="h6">Derive a GTIN-14 (optional)</h2>
-        <p class="small text-muted mb-2">Add a packaging indicator to convert your EAN-13 into a GTIN-14 for cases or pallets. We'll recalculate the check digit.</p>
+        <p class="small mb-2"><strong>Use this when you're labelling a case, inner pack or pallet</strong> — not the individual consumer unit.</p>
+        <p class="small text-muted mb-2">The same product gets a <em>different</em> GTIN at each packaging level. A single bottle of shampoo has one GTIN, a box of 12 bottles has another, a pallet of 48 boxes another again. That way a scanner instantly knows whether it just received 1 unit or 576, without anyone opening the carton to count.</p>
+        <p class="small text-muted mb-2">The <strong>packaging indicator</strong> is the digit that tells scanners which level this label is for. It prefixes your EAN-13 and we recalculate the check digit for you. GS1 reserves the digit values; the meaning of 1, 2, 3… is <em>your own convention</em> (typically inner &rarr; carton &rarr; case &rarr; pallet).</p>
+        <details class="small text-muted mb-3">
+          <summary>Typical conventions</summary>
+          <ul class="mb-0 mt-1">
+            <li><code>0</code> — single consumer unit (usually leave blank and use the plain EAN-13 instead)</li>
+            <li><code>1</code>–<code>8</code> — your own packaging levels (inner pack, shelf-ready case, shipping carton, pallet…)</li>
+            <li><code>9</code> — variable-measure item (weighed at the till)</li>
+          </ul>
+        </details>
+        <p class="small text-muted mb-3"><strong>Skip this if</strong> your label is for the individual consumer unit — just use the EAN-13 you already entered.</p>
+
         <div class="row g-2 align-items-end">
           <div class="col-sm-4">
             <label for="pi" class="form-label small">Packaging indicator</label>

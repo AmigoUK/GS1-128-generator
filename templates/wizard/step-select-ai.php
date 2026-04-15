@@ -20,7 +20,8 @@ $preselect = ['10', '15'];
 ?>
 
 <h1 class="h3 mb-3">What data do you want to add?</h1>
-<p class="text-muted">Pick the Application Identifiers to encode alongside the GTIN. Toggle as many as you need.</p>
+<p class="text-muted mb-2">Pick the fields you need alongside the GTIN. Each one is a standard "Application Identifier" (AI) — a 2-4 digit code that tells scanners how to interpret the value that follows (date, weight, batch, etc.), so any receiving system in the world decodes it the same way.</p>
+<p class="text-muted"><strong>Tip:</strong> only tick what you actually need on the label. Fewer AIs = shorter barcode = smaller print on labels. Batch and Best-before are pre-ticked as the most common combination.</p>
 
 <form id="select-ai-form">
 <?php foreach ($groups as $group => $items): ?>

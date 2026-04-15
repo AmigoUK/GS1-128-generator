@@ -15,9 +15,10 @@ $defs = ai_definitions();
       <div class="card-body">
         <h2 class="h6">Human-readable</h2>
         <code id="hri-string" class="machine-string"></code>
+        <p class="small text-muted mt-1 mb-2">This is what gets printed <em>underneath</em> the bars so a person can read the data. The brackets around each AI aren't encoded in the barcode itself — they're just visual separators.</p>
         <h2 class="h6 mt-3">Machine-readable</h2>
         <code id="machine-string" class="machine-string"></code>
-        <p class="small text-muted mt-2 mb-0"><code>&lt;FNC1&gt;</code> markers represent the GS1 separator (ASCII 0xF1) inserted between variable-length AIs.</p>
+        <p class="small text-muted mt-1 mb-0">This is what the scanner actually decodes. No brackets, and <code>&lt;FNC1&gt;</code> markers represent an invisible GS1 separator character (ASCII 0x1D) that tells the scanner "one variable-length field just ended, a new AI is starting". Without them the scanner couldn't know whether <code>10LOT2024A21SN000123</code> meant batch <code>LOT2024A21SN000123</code> or batch <code>LOT2024A</code> + serial <code>SN000123</code>.</p>
       </div>
     </div>
   </div>
