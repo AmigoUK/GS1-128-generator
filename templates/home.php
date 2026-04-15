@@ -1,3 +1,44 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use a random 13-digit number as my barcode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only for internal use. A retail-facing EAN-13 must come from a GS1-assigned company prefix, otherwise it will clash with someone else's real GTIN. For internal use, EAN-13 codes starting with 020-029 are reserved by GS1 for in-store / restricted circulation and are guaranteed not to collide with a real GTIN."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between EAN-13, GTIN-13, GTIN-14 and GS1-128?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EAN-13 and GTIN-13 are essentially the same — a 13-digit identifier on consumer-unit packaging. GTIN-14 is a 14-digit form used on cases and pallets, with one extra packaging-indicator digit at the front. GS1-128 is a barcode format based on Code 128 that can carry a GTIN plus additional supply-chain data using Application Identifiers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my scanner read an extra invisible character between fields?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's the FNC1 separator (ASCII 0x1D / GS). It tells the scanner that a variable-length Application Identifier has ended. A GS1-128 without FNC1 between variable-length AIs is not standards-compliant. Most POS and WMS software strips it or converts it to a field separator automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the maximum length of a GS1-128 barcode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "48 data characters, per the GS1 General Specifications. This tool enforces that limit and will warn you before you print a label scanners would refuse."
+      }
+    }
+  ]
+}
+</script>
+
 <div class="row align-items-center mb-5">
   <div class="col-md-7">
     <h1 class="display-5">Generate standards-compliant GS1-128 barcodes.</h1>

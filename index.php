@@ -12,6 +12,7 @@ require_once __DIR__ . '/includes/barcode-generator.php';
 require_once __DIR__ . '/includes/import-csv.php';
 require_once __DIR__ . '/includes/import-xml.php';
 require_once __DIR__ . '/includes/export.php';
+require_once __DIR__ . '/includes/seo.php';
 
 $base = base_url();
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/';
@@ -20,31 +21,28 @@ if ($route === '') $route = 'home';
 
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
+// Normalise route alias for SEO metadata lookup.
+$seoRoute = $route === 'wizard/input' ? 'wizard' : ($route === 'bulk/upload' ? 'bulk' : $route);
+
 switch ($route) {
     case 'home':
-        $title = 'GS1-128 Generator';
         $view = __DIR__ . '/templates/home.php';
         break;
 
     case 'wizard':
     case 'wizard/input':
-        $title = 'Create barcode — Step 1';
         $view = __DIR__ . '/templates/wizard/step-input.php';
         break;
     case 'wizard/select-ai':
-        $title = 'Create barcode — Step 2';
         $view = __DIR__ . '/templates/wizard/step-select-ai.php';
         break;
     case 'wizard/ai-data':
-        $title = 'Create barcode — Step 3';
         $view = __DIR__ . '/templates/wizard/step-ai-data.php';
         break;
     case 'wizard/review':
-        $title = 'Create barcode — Step 4';
         $view = __DIR__ . '/templates/wizard/step-review.php';
         break;
     case 'wizard/export':
-        $title = 'Create barcode — Step 5';
         $view = __DIR__ . '/templates/wizard/step-export.php';
         break;
 
@@ -55,15 +53,12 @@ switch ($route) {
             handle_bulk_upload();
             exit;
         }
-        $title = 'Bulk import';
         $view = __DIR__ . '/templates/bulk/upload.php';
         break;
     case 'bulk/validate':
-        $title = 'Bulk import — validation';
         $view = __DIR__ . '/templates/bulk/validation.php';
         break;
     case 'bulk/results':
-        $title = 'Bulk import — results';
         $view = __DIR__ . '/templates/bulk/results.php';
         break;
     case 'bulk/download':
@@ -93,10 +88,20 @@ switch ($route) {
         readfile(__DIR__ . '/downloads/schema.xsd');
         exit;
 
+    case 'robots.txt':
+        render_robots();
+        exit;
+    case 'sitemap.xml':
+        render_sitemap();
+        exit;
+
     default:
         http_response_code(404);
-        $title = 'Not found';
+        $seoRoute = '404';
         $view = null;
 }
+
+$meta = seo_meta_for($seoRoute);
+$title = $meta['title'];
 
 require __DIR__ . '/templates/layout.php';
