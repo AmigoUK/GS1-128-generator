@@ -2,7 +2,27 @@
 
 A web-based tool that generates standards-compliant **GS1-128 / EAN-128** barcodes from EAN-13 or GTIN-14 inputs, with optional Application Identifiers (batch numbers, dates, weights, serials, etc.). Includes a guided single-barcode wizard and a CSV/XML bulk-import flow.
 
-Status: **v0.1.0** — wizard + bulk import live, no DB required.
+**Live demo:** [attv.uk/projects/GS1-128-barcode-generator/](https://attv.uk/projects/GS1-128-barcode-generator/) · Status: **v0.1.0** — wizard + bulk import live, no DB required.
+
+![GS1-128 Barcode Generator landing page with sample GS1-128 barcode preview, Create-a-Barcode and Bulk-Import call-to-action cards, and an educational primer about EAN-13, GTIN-14 and Application Identifiers](docs/screenshots/home-landing-page.png)
+
+## Screenshots
+
+### The 5-step wizard
+
+| ![Wizard Step 1: instant EAN-13 check-digit validation showing the specific error 'should be 7, you entered 3'](docs/screenshots/wizard-step-1-ean13-check-digit-error.png) | ![Wizard Step 1 with the 'Derive a GTIN-14' panel expanded — packaging indicator selector set to 3 and the resulting 14-digit GTIN with recalculated check digit](docs/screenshots/wizard-step-1-derive-gtin14-packaging-indicator.png) |
+|:---|:---|
+| **Step 1 — instant check-digit validation.** Tells you which digit is wrong rather than a generic "invalid input". | **Step 1 — optional GTIN-14 derivation.** Convert an EAN-13 into a case- or pallet-level GTIN; check digit is recalculated automatically. |
+| ![Wizard Step 2: choose Application Identifiers grouped into Batch & Serial, Dates, Measurements and Order Info, with Batch and Best-Before pre-ticked](docs/screenshots/wizard-step-2-choose-application-identifiers.png) | ![Wizard Step 3: entering a batch / lot number with a 'When should I use this?' help panel open and a live encoded preview '10B3454'](docs/screenshots/wizard-step-3-batch-lot-number-input.png) |
+| **Step 2 — choose Application Identifiers.** Card-grid picker grouped by category, with the most common combination pre-ticked. | **Step 3 — one AI per screen.** Plain-English "When should I use this?" guidance, instant validation, live encoding preview. |
+| ![Wizard Step 3: entering a best-before date with the native date picker — value 30/04/2026 converted to GS1 YYMMDD format 260430](docs/screenshots/wizard-step-3-best-before-date-input.png) | ![Wizard Step 4 review screen with the assembled AI table, human-readable string, machine-readable string, and a live GS1-128 barcode preview](docs/screenshots/wizard-step-4-review-with-live-preview.png) |
+| **Step 3 — date inputs.** Native date picker or YYMMDD; converted to GS1 format with the encoded value shown below. | **Step 4 — review with live preview.** Both human- and machine-readable strings shown side-by-side with an explanation of FNC1 separators. |
+
+### Export and bulk import
+
+| ![Wizard Step 5: download page showing the final GS1-128 barcode and three download buttons: PNG, SVG and PDF](docs/screenshots/wizard-step-5-download-png-svg-pdf.png) | ![Bulk import page with a drag-and-drop CSV/XML upload zone, downloadable CSV/XML templates and XSD schema, and the demo-limit notice](docs/screenshots/bulk-import-upload-csv-xml.png) |
+|:---|:---|
+| **Step 5 — download.** PNG (screen), SVG (print at any size) or PDF (label-friendly layout). | **Bulk import.** Drag a CSV or XML file to generate up to 6 barcodes per upload; templates and XSD schema linked. |
 
 ## Features
 
