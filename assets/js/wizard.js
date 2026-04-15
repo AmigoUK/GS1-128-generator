@@ -12,5 +12,11 @@ const Wizard = (function () {
   function reset() { sessionStorage.removeItem(KEY); }
   function patch(partial) { const s = load(); Object.assign(s, partial); save(s); return s; }
 
-  return { load, save, reset, patch };
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  return { load, save, reset, patch, escapeHtml };
 })();
