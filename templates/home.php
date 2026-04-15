@@ -141,7 +141,16 @@
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1">Can I use a random 13-digit number as my barcode?</button>
       </h3>
       <div id="faq-1" class="accordion-collapse collapse" data-bs-parent="#faq-accordion">
-        <div class="accordion-body small">Only for internal use. A retail-facing EAN-13 must come from a GS1-assigned company prefix, otherwise it will clash with someone else's real GTIN and cause ugly confusion in retail scanners and online marketplaces (Amazon, in particular, enforces this).</div>
+        <div class="accordion-body small">
+          <p class="mb-2">Only for internal use. A retail-facing EAN-13 must come from a GS1-assigned company prefix, otherwise it will clash with someone else's real GTIN and cause ugly confusion in retail scanners and online marketplaces (Amazon, in particular, enforces this).</p>
+          <p class="mb-2"><strong>For internal use do it properly:</strong> EAN-13 codes starting with the prefix range <code>020</code>&ndash;<code>029</code> are reserved by GS1 for <em>in-store / restricted circulation</em>. They are never assigned to any company's products, so they're guaranteed not to collide with a real GTIN. Use them for:</p>
+          <ul class="mb-2">
+            <li>warehouse bin / location labels</li>
+            <li>variable-weight items priced at the till (deli, butcher, produce)</li>
+            <li>internal asset tagging, tote IDs, work-in-progress tracking</li>
+          </ul>
+          <p class="mb-0">Structure: <code>02 X XXXXXX CCCCC D</code> &mdash; the leading <code>02</code> marks it as internal, the next digit identifies the store / department (your own convention), then your item reference, then the standard mod-10 check digit. This tool will validate the check digit for any 020&ndash;029 code you enter, same as a real GTIN.</p>
+        </div>
       </div>
     </div>
     <div class="accordion-item">
