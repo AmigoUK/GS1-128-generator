@@ -1,0 +1,10 @@
+/vendor/
+/node_modules/
+/storage/uploads/*
+/storage/generated/*
+!/storage/uploads/.htaccess
+!/storage/generated/.htaccess
+.phpunit.result.cache
+.idea/
+.vscode/
+*.log
