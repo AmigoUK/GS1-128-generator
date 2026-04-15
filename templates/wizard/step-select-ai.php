@@ -56,7 +56,7 @@ $preselect = ['10', '15'];
 </form>
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('select-ai-form');
   const saved = Wizard.load();
   if (!saved.gtin14) { window.location.href = '<?= base_url() ?>wizard/input'; return; }
@@ -84,5 +84,5 @@ $preselect = ['10', '15'];
       window.location.href = '<?= base_url() ?>wizard/ai-data';
     }
   });
-})();
+});
 </script>

@@ -41,7 +41,7 @@
 </div>
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const input = document.getElementById('base-id');
   const fb = document.getElementById('base-id-feedback');
   const help = document.getElementById('base-id-help');
@@ -113,5 +113,5 @@
 
   const saved = Wizard.load();
   if (saved.base) { input.value = saved.base; evaluate(); if (saved.pi !== '' && saved.pi !== undefined) { piSelect.value = saved.pi; evaluatePi(); } }
-})();
+});
 </script>

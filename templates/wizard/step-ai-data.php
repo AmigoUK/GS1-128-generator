@@ -10,7 +10,7 @@ $defs = ai_definitions();
 <script id="ai-defs" type="application/json"><?= json_encode($defs, JSON_UNESCAPED_SLASHES) ?></script>
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const E = Wizard.escapeHtml;
   const defs = JSON.parse(document.getElementById('ai-defs').textContent);
   const state = Wizard.load();
@@ -111,5 +111,5 @@ $defs = ai_definitions();
   }
 
   render();
-})();
+});
 </script>

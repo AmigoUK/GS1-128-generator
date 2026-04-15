@@ -39,7 +39,7 @@
 </div>
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const dropZone = document.getElementById('drop-zone');
   const input = document.getElementById('datafile');
   const info = document.getElementById('file-info');
@@ -57,5 +57,5 @@
   }
   BulkImport.wireDropZone(dropZone, input, describe);
   dropZone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
-})();
+});
 </script>

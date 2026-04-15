@@ -8,6 +8,12 @@
 <meta name="description" content="Generate standards-compliant GS1-128 (EAN-128) barcodes from EAN-13 or GTIN-14 with guided wizard or bulk CSV/XML import.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/app.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bwip-js@4.5.1/dist/bwip-js-min.js" defer></script>
+<script src="<?= base_url() ?>assets/js/validation.js" defer></script>
+<script src="<?= base_url() ?>assets/js/barcode-preview.js" defer></script>
+<script src="<?= base_url() ?>assets/js/wizard.js" defer></script>
+<script src="<?= base_url() ?>assets/js/bulk-import.js" defer></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -33,11 +39,5 @@
   <p><?= htmlspecialchars(APP_NAME) ?> v<?= htmlspecialchars(APP_VERSION) ?> &middot; <a href="https://github.com/AmigoUK/GS1-128-generator">GitHub</a></p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bwip-js@4.5.1/dist/bwip-js-min.js"></script>
-<script src="<?= base_url() ?>assets/js/validation.js"></script>
-<script src="<?= base_url() ?>assets/js/barcode-preview.js"></script>
-<script src="<?= base_url() ?>assets/js/wizard.js"></script>
-<script src="<?= base_url() ?>assets/js/bulk-import.js"></script>
 </body>
 </html>

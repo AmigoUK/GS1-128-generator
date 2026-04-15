@@ -27,7 +27,7 @@
 </div>
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const state = Wizard.load();
   if (!state.gtin14 || !state.resolved) { window.location.href = '<?= base_url() ?>wizard/input'; return; }
 
@@ -48,5 +48,5 @@
   document.getElementById('dl-png').addEventListener('click', () => trigger('png'));
   document.getElementById('dl-svg').addEventListener('click', () => trigger('svg'));
   document.getElementById('dl-pdf').addEventListener('click', () => trigger('pdf'));
-})();
+});
 </script>

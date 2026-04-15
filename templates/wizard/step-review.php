@@ -36,7 +36,7 @@ $defs = ai_definitions();
 
 <script id="ai-defs" type="application/json"><?= json_encode($defs, JSON_UNESCAPED_SLASHES) ?></script>
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const defs = JSON.parse(document.getElementById('ai-defs').textContent);
   const state = Wizard.load();
   if (!state.gtin14) { window.location.href = '<?= base_url() ?>wizard/input'; return; }
@@ -152,5 +152,5 @@ $defs = ai_definitions();
   }
 
   render();
-})();
+});
 </script>
