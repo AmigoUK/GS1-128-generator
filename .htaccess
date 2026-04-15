@@ -1,20 +1,20 @@
-# Front controller
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /GS1-128-generator/
 
-    # Allow real files (assets, downloads) to pass through
+    # Block direct access to sensitive files/dirs — must come BEFORE the
+    # file-passthrough rule below, otherwise real files would bypass this.
+    RewriteRule ^(includes|storage|tests|vendor)(/|$) - [F,L]
+    RewriteRule ^composer\.(json|lock)$ - [F,L]
+    RewriteRule ^phpunit\.xml$ - [F,L]
+
+    # Allow remaining real files (assets, downloads) to pass through
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # Everything else routes through index.php
+    # Everything else routes through the front controller
     RewriteRule ^ index.php [L]
 </IfModule>
-
-# Block direct access to sensitive directories
-RedirectMatch 403 ^/GS1-128-generator/(includes|storage|tests|vendor)/.*$
-RedirectMatch 403 ^/GS1-128-generator/composer\.(json|lock)$
 
 # Security headers
 <IfModule mod_headers.c>
