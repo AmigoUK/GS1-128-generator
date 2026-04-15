@@ -157,7 +157,10 @@ function validate_ai_value(string $code, string $value, array $defs = null): arr
  * $resolved is a list of [resolved_code, encoded_value] pairs.
  */
 function validate_ai_combinations(array $resolved): array {
-    $codes = array_column($resolved, 0);
+    // Cast every code to string — callers may pass PHP array keys that got
+    // auto-converted to int (e.g. '37' → 37), which would break strict
+    // comparisons below.
+    $codes = array_map('strval', array_column($resolved, 0));
     $errors = [];
 
     if (count($codes) !== count(array_unique($codes))) {

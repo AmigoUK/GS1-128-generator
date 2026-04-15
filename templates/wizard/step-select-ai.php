@@ -2,9 +2,18 @@
 $current = 2; include __DIR__ . '/_progress.php';
 $defs = ai_definitions();
 
+// Exclude AIs whose combination rules would strand the user in the wizard:
+//   (01) — the base GTIN, already captured in Step 1
+//   (02) — mutually exclusive with (01); only usable on logistic units
+//   (37) — requires (02); pointless without it
+// All three remain fully supported in the bulk-import flow.
+$wizardExcluded = ['01', '02', '37'];
+
 $groups = [];
 foreach ($defs as $code => $def) {
-    if (in_array($code, ['01', '02'], true)) continue;
+    // $code may be an int here — PHP auto-casts numeric-string keys (e.g. '37' → 37),
+    // but keys with leading zeros ('01') stay strings. Compare as strings explicitly.
+    if (in_array((string)$code, $wizardExcluded, true)) continue;
     $groups[$def['group']][$code] = $def;
 }
 $preselect = ['10', '15'];
@@ -18,7 +27,7 @@ $preselect = ['10', '15'];
   <h2 class="h6 text-uppercase text-muted mt-4 mb-2"><?= htmlspecialchars($group) ?></h2>
   <div class="row g-3">
     <?php foreach ($items as $code => $def):
-      $checked = in_array($code, $preselect, true) ? 'checked' : '';
+      $checked = in_array((string)$code, $preselect, true) ? 'checked' : '';
     ?>
     <div class="col-md-6">
       <label class="card ai-card h-100">
@@ -37,6 +46,8 @@ $preselect = ['10', '15'];
     <?php endforeach; ?>
   </div>
 <?php endforeach; ?>
+
+  <p class="small text-muted mt-4 mb-0">Looking for logistic-unit AIs like <code>(02)</code> contained GTIN or <code>(37)</code> count? They're only meaningful together and aren't part of the single-barcode wizard &mdash; use <a href="<?= base_url() ?>bulk">bulk import</a> with the <code>gtin_contained</code> and <code>count</code> columns instead.</p>
 
   <div class="d-flex justify-content-between mt-4">
     <a href="<?= base_url() ?>wizard/input" class="btn btn-link">&laquo; Back</a>
